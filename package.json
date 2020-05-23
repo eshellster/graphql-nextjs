@@ -27,6 +27,7 @@
     "graphql-iso-date": "3.6.1",
     "graphql-tag": "2.10.3",
     "isomorphic-unfetch": "3.0.0",
+    "merge-graphql-schemas": "^1.7.8",
     "next": "9.4.0",
     "nexus": "0.20.0",
     "nexus-prisma": "^0.12.0",

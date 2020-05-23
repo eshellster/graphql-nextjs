@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 model User {
@@ -20,8 +20,8 @@ model User {
 model Folder {
   id           Int      @default(autoincrement()) @id
   name         String?
-  puzzleLevel  Int?
-  puzzleSize   Int?
+  puzzleLevel  Int
+  puzzleSize   Int
   notes        Note[]
   puzzs        Puzz[]   @relation(references: [id])
   folderId     Int?     @unique
@@ -45,8 +45,8 @@ model Hint {
 model Note {
   id          Int     @default(autoincrement()) @id
   name        String?
-  puzzleLevel Int?
-  puzzleSize  Int?
+  puzzleLevel Int
+  puzzleSize  Int
   folderId    Int?
   folder      Folder? @relation(fields: [folderId], references: [id])
   puzzs       Puzz[]  @relation(references: [id])

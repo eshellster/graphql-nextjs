@@ -28,18 +28,52 @@ export interface NexusGenEnums {
 }
 
 export interface NexusGenRootTypes {
+  Folder: { // root type
+    id: number; // Int!
+    name: string; // String!
+    puzzleLevel?: number | null; // Int
+    puzzleSize?: number | null; // Int
+  }
+  Group: { // root type
+    id: number; // Int!
+    name: string; // String!
+  }
+  Hint: { // root type
+    hint: string; // String!
+    id: number; // Int!
+    keyWords: string; // String!
+  }
   Mutation: {};
+  Note: { // root type
+    id: number; // Int!
+    name: string; // String!
+    puzzleLevel?: number | null; // Int
+    puzzleSize?: number | null; // Int
+  }
   Post: { // root type
     content?: string | null; // String
     id: number; // Int!
     published: boolean; // Boolean!
     title: string; // String!
   }
+  Profile: { // root type
+    bio?: string | null; // String
+    id: number; // Int!
+  }
+  Puzz: { // root type
+    author: number; // Int!
+    eng: string; // String!
+    id: number; // Int!
+    kor: string; // String!
+    puzzleLevel?: number | null; // Int
+    puzzleSize?: number | null; // Int
+    setDate: string; // String!
+  }
   Query: {};
   User: { // root type
     email: string; // String!
     id: number; // Int!
-    name: string; // String!
+    name?: string | null; // String
   }
   String: string;
   Int: number;
@@ -53,11 +87,40 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
 }
 
 export interface NexusGenFieldTypes {
+  Folder: { // field return type
+    id: number; // Int!
+    name: string; // String!
+    notes: NexusGenRootTypes['Note'][]; // [Note!]!
+    parentFolder: NexusGenRootTypes['Folder'] | null; // Folder
+    puzzleLevel: number | null; // Int
+    puzzleSize: number | null; // Int
+    puzzs: NexusGenRootTypes['Puzz'][]; // [Puzz!]!
+    subFolders: NexusGenRootTypes['Folder'][]; // [Folder!]!
+  }
+  Group: { // field return type
+    id: number; // Int!
+    name: string; // String!
+    users: NexusGenRootTypes['User'][]; // [User!]!
+  }
+  Hint: { // field return type
+    hint: string; // String!
+    id: number; // Int!
+    keyWords: string; // String!
+    puzzs: NexusGenRootTypes['Puzz']; // Puzz!
+  }
   Mutation: { // field return type
     createDraft: NexusGenRootTypes['Post']; // Post!
     deletePost: NexusGenRootTypes['Post'] | null; // Post
     publish: NexusGenRootTypes['Post'] | null; // Post
     signupUser: NexusGenRootTypes['User']; // User!
+  }
+  Note: { // field return type
+    folder: NexusGenRootTypes['Folder']; // Folder!
+    id: number; // Int!
+    name: string; // String!
+    puzzleLevel: number | null; // Int
+    puzzleSize: number | null; // Int
+    puzzs: NexusGenRootTypes['Puzz'][]; // [Puzz!]!
   }
   Post: { // field return type
     author: NexusGenRootTypes['User'] | null; // User
@@ -66,17 +129,38 @@ export interface NexusGenFieldTypes {
     published: boolean; // Boolean!
     title: string; // String!
   }
+  Profile: { // field return type
+    bio: string | null; // String
+    id: number; // Int!
+    user: NexusGenRootTypes['User']; // User!
+  }
+  Puzz: { // field return type
+    author: number; // Int!
+    eng: string; // String!
+    folders: NexusGenRootTypes['Folder'][]; // [Folder!]!
+    hints: NexusGenRootTypes['Hint'][]; // [Hint!]!
+    id: number; // Int!
+    kor: string; // String!
+    notes: NexusGenRootTypes['Note'][]; // [Note!]!
+    puzzleLevel: number | null; // Int
+    puzzleSize: number | null; // Int
+    setDate: string; // String!
+  }
   Query: { // field return type
     drafts: NexusGenRootTypes['Post'][]; // [Post!]!
     feed: NexusGenRootTypes['Post'][]; // [Post!]!
     filterPosts: NexusGenRootTypes['Post'][]; // [Post!]!
+    filterUsers: NexusGenRootTypes['User'][]; // [User!]!
     post: NexusGenRootTypes['Post']; // Post!
   }
   User: { // field return type
     email: string; // String!
+    groups: NexusGenRootTypes['Group'][]; // [Group!]!
     id: number; // Int!
-    name: string; // String!
+    name: string | null; // String
     posts: NexusGenRootTypes['Post'][]; // [Post!]!
+    profile: NexusGenRootTypes['Profile'] | null; // Profile
+    userPuzzes: NexusGenRootTypes['Puzz'][]; // [Puzz!]!
   }
 }
 
@@ -102,6 +186,9 @@ export interface NexusGenArgTypes {
     filterPosts: { // args
       searchString?: string | null; // String
     }
+    filterUsers: { // args
+      searchString?: string | null; // String
+    }
     post: { // args
       postId: string; // String!
     }
@@ -113,7 +200,7 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "Mutation" | "Post" | "Query" | "User";
+export type NexusGenObjectNames = "Folder" | "Group" | "Hint" | "Mutation" | "Note" | "Post" | "Profile" | "Puzz" | "Query" | "User";
 
 export type NexusGenInputNames = never;
 

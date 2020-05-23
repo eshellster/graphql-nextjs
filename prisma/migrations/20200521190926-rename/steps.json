@@ -1,0 +1,35 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "UpdateField",
+      "model": "Folder",
+      "field": "puzzleLevel",
+      "arity": "Optional"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "Folder",
+      "field": "puzzleSize",
+      "arity": "Optional"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "Note",
+      "field": "name",
+      "arity": "Required"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "Note",
+      "field": "puzzleLevel",
+      "arity": "Optional"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "Note",
+      "field": "puzzleSize",
+      "arity": "Optional"
+    }
+  ]
+}

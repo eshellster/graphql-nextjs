@@ -9,11 +9,44 @@ representation of dates and times using the Gregorian calendar.
 """
 scalar Date
 
+type Folder {
+  id: Int!
+  name: String!
+  notes: [Note!]!
+  parentFolder: Folder
+  puzzleLevel: Int
+  puzzleSize: Int
+  puzzs: [Puzz!]!
+  subFolders: [Folder!]!
+}
+
+type Group {
+  id: Int!
+  name: String!
+  users: [User!]!
+}
+
+type Hint {
+  hint: String!
+  id: Int!
+  keyWords: String!
+  puzzs: Puzz!
+}
+
 type Mutation {
   createDraft(authorEmail: String, content: String, title: String!): Post!
   deletePost(postId: String): Post
   publish(postId: String): Post
   signupUser(email: String!, name: String): User!
+}
+
+type Note {
+  folder: Folder!
+  id: Int!
+  name: String!
+  puzzleLevel: Int
+  puzzleSize: Int
+  puzzs: [Puzz!]!
 }
 
 type Post {
@@ -24,16 +57,39 @@ type Post {
   title: String!
 }
 
+type Profile {
+  bio: String
+  id: Int!
+  user: User!
+}
+
+type Puzz {
+  author: Int!
+  eng: String!
+  folders: [Folder!]!
+  hints: [Hint!]!
+  id: Int!
+  kor: String!
+  notes: [Note!]!
+  puzzleLevel: Int
+  puzzleSize: Int
+  setDate: String!
+}
+
 type Query {
   drafts: [Post!]!
   feed: [Post!]!
   filterPosts(searchString: String): [Post!]!
+  filterUsers(searchString: String): [User!]!
   post(postId: String!): Post!
 }
 
 type User {
   email: String!
+  groups: [Group!]!
   id: Int!
-  name: String!
+  name: String
   posts: [Post!]!
+  profile: Profile
+  userPuzzes: [Puzz!]!
 }

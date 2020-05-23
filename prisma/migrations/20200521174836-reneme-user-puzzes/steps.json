@@ -1,0 +1,29 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "CreateField",
+      "model": "User",
+      "field": "profile",
+      "type": "Profile",
+      "arity": "Optional"
+    },
+    {
+      "tag": "CreateField",
+      "model": "User",
+      "field": "userPuzzes",
+      "type": "Puzz",
+      "arity": "List"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "User",
+      "field": "Profile"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "User",
+      "field": "puzzes"
+    }
+  ]
+}

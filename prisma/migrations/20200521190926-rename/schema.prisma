@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 model User {
@@ -44,7 +44,7 @@ model Hint {
 
 model Note {
   id          Int     @default(autoincrement()) @id
-  name        String?
+  name        String
   puzzleLevel Int?
   puzzleSize  Int?
   folderId    Int?
