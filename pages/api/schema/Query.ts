@@ -68,5 +68,13 @@ export const Query = objectType({
         });
       },
     });
+
+    // t.list.field("puzzles",{
+    //   type:"Puzz",
+    //   args:{
+    //     userId: stringArg({nullable:true})
+
+    //   }
+    // })
   },
 });

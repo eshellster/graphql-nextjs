@@ -1,0 +1,16 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "UpdateField",
+      "model": "Note",
+      "field": "name",
+      "arity": "Optional"
+    },
+    {
+      "tag": "DeleteField",
+      "model": "Puzz",
+      "field": "folderId"
+    }
+  ]
+}
